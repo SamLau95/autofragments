@@ -1,8 +1,0 @@
-README.md
-setup.py
-autofragments/__init__.py
-autofragments.egg-info/PKG-INFO
-autofragments.egg-info/SOURCES.txt
-autofragments.egg-info/dependency_links.txt
-autofragments.egg-info/top_level.txt
-autofragments/static/main.js
