@@ -1,10 +1,13 @@
 function addFragmentClasses(mdCell) {
   const html = mdCell.element.find('div.text_cell_render')
 
-  // add fragment class to all top-level elements except the first one and uls
-  html.children().slice(1).not('ul, ol').addClass('fragment')
+  html
+    .children() // top-level elements in cell
+    .slice(1) // don't fragment first thing in cell
+    .not('ul, ol') // avoid needing to double-tap next slide for lists
+    .addClass('fragment')
 
-  // make sure nested list elements get fragment too
+  // handle nested list elements
   html.find('li').addClass('fragment')
 }
 
@@ -17,6 +20,7 @@ define([
     Jupyter.notebook
       .get_cells()
       .filter((cell) => cell instanceof textcell.MarkdownCell)
+      .slice(1) // don't fragment first slide
       .forEach(addFragmentClasses)
 
     events.on('rendered.MarkdownCell', function (ev, payload) {
